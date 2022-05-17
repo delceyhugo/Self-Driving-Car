@@ -4,7 +4,6 @@ class Sensor{
         this.rayCount = 5
         this.rayLength = 200
         this.raySpread = Math.PI/2
-
         this.rays = []
         this.readings = []
     }

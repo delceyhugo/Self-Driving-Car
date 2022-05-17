@@ -3,17 +3,17 @@
 
 body{
     margin: 0px;
-    background-color: black;
+    background-color: #23232D;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 200px 300px 1fr;
 }
 #carCanvas{
     background-color: #23232D;
 }
 #networkCanvas{
-    background-color: black;
+    background-color: #23232D;
+    border-right: #ffffff solid 5px;
 }
 
 
@@ -24,8 +24,6 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
-    min-width: 300px;
     background-color: #23232D;
 }
 
@@ -35,9 +33,10 @@ body{
 #card{
     display: flex;
     flex-direction: column;
-    
+    width: 65%;
+    max-width: 300px;
+    min-width: 250px;
     background-color: #191920;
-    width: 200px;
     padding: 10px 25px;
     margin: 20px 0px;
     border-radius: 5px;
@@ -47,18 +46,19 @@ h2{
     margin: 0px;
     text-align: center;
     font-size: 24px;
-    color: #191920;
+    color: #23232D;
     font-family: 'Roboto Mono', monospace;
     padding: 10px 0px 20px 0px;
 }
 label{
     font-family: 'Roboto Mono', monospace;
     font-size: 14px;
-    color: #191920;
+    color: #23232D;
     margin: 0px;
     padding: 10px 0px;
+    text-align: center;
 }
-#trafficCars{
+.input-param{
     width: 50px;
     height: 25px;
     margin: 0px 5px;
@@ -66,6 +66,7 @@ label{
     border: none;
     outline: none;
     text-align: center;
+    color: #23232D;
 }
 .check{
     margin: 0px;

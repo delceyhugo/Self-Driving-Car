@@ -37,7 +37,7 @@ class Visualizer{
             const x = Visualizer.#getNodeX(inputs, i, left, right)
             ctx.beginPath()
             ctx.arc(x, bottom, nodeRadius, 0, Math.PI*2)
-            ctx.fillStyle = 'black'
+            ctx.fillStyle = '#23232D'
             ctx.fill()
 
             ctx.beginPath()
@@ -49,7 +49,7 @@ class Visualizer{
             const x = Visualizer.#getNodeX(outputs, i, left, right)
             ctx.beginPath()
             ctx.arc(x, top, nodeRadius, 0, Math.PI*2)
-            ctx.fillStyle = 'black'
+            ctx.fillStyle = '#23232D'
             ctx.fill()
 
             ctx.beginPath()
@@ -69,7 +69,7 @@ class Visualizer{
                 ctx.beginPath()
                 ctx.textAlign = 'center'
                 ctx.textBaseline = 'middle'
-                ctx.fillStyle = 'black'
+                ctx.fillStyle = '#23232D'
                 ctx.strokeStyle = 'white'
                 ctx.font=(nodeRadius*1.5)+'px Arial'
                 ctx.fillText(outputLabels[i], x, top+nodeRadius*0.1)

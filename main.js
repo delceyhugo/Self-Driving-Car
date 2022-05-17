@@ -1,20 +1,37 @@
 const carCanvas = document.querySelector('#carCanvas')
 carCanvas.width = 200
-
 const networkCanvas = document.querySelector('#networkCanvas')
 networkCanvas.width = 300
+
+
+var param
+if(localStorage.getItem('parameter')){
+    param = JSON.parse(localStorage.getItem('parameter'))
+    for (const property in param) {
+        document.querySelector('#' + property) !== null ? document.querySelector('#' + property).value = param[property] : null
+    }
+}else{
+    param = {
+        network: 500,
+        trafficLength: 5,
+        laneCount: 3,
+        control: 'AI',
+        speed: 3,
+        mutationRate: 0.1
+    }
+}
+
 
 const carCtx = carCanvas.getContext('2d')
 const networkCtx = networkCanvas.getContext('2d')
 
-const road = new Road (carCanvas.width/2, carCanvas.width*0.9, 3)
+const road = new Road (carCanvas.width/2, carCanvas.width*0.9, param.laneCount)
 
-const N = 500
-const cars = generateCars(N)
+const cars = generateCars(param.network, param.speed)
 let bestCar = cars[0]
 
 
-let traffic = generateRandomTraffic(setNumOfCarsInTraffic())
+let traffic = generateRandomTraffic(param.trafficLength)
 
 
 let isPaused = false
@@ -23,22 +40,26 @@ function togglePause(){
     isPaused = !isPaused
 }
 
-function setNumOfCarsInTraffic(){
-    return document.querySelector('#trafficCars').value
+
+function setParameter(target){
+    param[target] = parseFloat(document.querySelector('#' + target).value)
+    localStorage.setItem('parameter', JSON.stringify(param))
+    if(target == 'laneCount' || 'trafficLength') trafficDiscard()
+    window.location.reload();
 }
+
 
 
 
 if(localStorage.getItem('bestBrain')){
     for (let i = 0; i < cars.length; i++) {
         cars[i].brain = JSON.parse(localStorage.getItem('bestBrain'))
-        if(i != 0) NeuralNetwork.mutate(cars[i].brain, 0.1)
+        if(i != 0) NeuralNetwork.mutate(cars[i].brain, param.mutationRate)
     }
 }
 if(localStorage.getItem('traffic')){
     traffic = rehydrateSavedTraffic(JSON.parse(localStorage.getItem('traffic')))
 }
-
 
 
 const savedTrafficData = []
@@ -52,6 +73,11 @@ for (let i = 0; i < traffic.length; i++) {
     })
     
 }
+
+
+
+
+
 
 
 
@@ -99,15 +125,12 @@ function trafficSave(){
 function trafficDiscard(){
     localStorage.removeItem('traffic')
 }
-
 function save(){
     localStorage.setItem('bestBrain', JSON.stringify(bestCar.brain))
 }
 function discard(){
     localStorage.removeItem('bestBrain')
 }
-
-
 function generateCars(N, speed = 3){
     const cars = []
     for (let i = 0; i < N; i++) {
@@ -121,21 +144,16 @@ function generateCars(N, speed = 3){
 
 
 function animate(time){
-
     if(!isPaused){
-
         for (let i = 0; i < traffic.length; i++) {
             traffic[i].update(road.borders, [])
         }
         for (let i = 0; i < cars.length; i++) {
             cars[i].update(road.borders, traffic)
-            
         }
         bestCar = cars.find(c => c.y == Math.min(...cars.map(c => c.y)))
-
         carCanvas.height = window.innerHeight
         networkCanvas.height = window.innerHeight
-
         carCtx.save()
         carCtx.translate(0, -bestCar.y + carCanvas.height * 0.7)
         road.draw(carCtx)
@@ -148,14 +166,9 @@ function animate(time){
         }
         carCtx.globalAlpha = 1
         bestCar.draw(carCtx, true)
-
         carCtx.restore()
-
         networkCtx.lineDashOffset = -time/50
         Visualizer.drawNetwork(networkCtx, bestCar.brain)
-
-
-
         const now = performance.now()
         while (fps.length > 0 && fps[0] <= now - 1000) {
             fps.shift();
@@ -164,8 +177,5 @@ function animate(time){
         Visualizer.drawFps(networkCtx, fps.length)
 
     }
-
-
-
     requestAnimationFrame(animate)
 }

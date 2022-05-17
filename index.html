@@ -8,20 +8,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+    control: 'AI', -->
     <aside id="aside">
         <div id="card">
-            <h2>Regenerate Script</h2>
+            <h2>Reload Script</h2>
             <div class="verticalAlign">
-                <button onclick="load_js();">Refresh Page</button>
-                <button onclick="togglePause()">Play | Pause</button>
+                <button class="roundButton" onclick="window.location.reload();">
+                    <img src="https://img.icons8.com/ios-glyphs/23/000000/refresh--v1.png"/>
+                </button>
+                <button class="roundButton" onclick="togglePause()">
+                    <img src="https://img.icons8.com/material-outlined/25/000000/pause--v1.png"/>
+                </button>
             </div>
         </div>
         <div id="card">
             <h2>Traffic</h2>
             <div class="verticalAlign">
-                <label>Cars num : </label>
-                <input type="number" id="trafficCars" name="trafficCars" value="20" min="0" max="100">
-                <button class="check" onclick="setNumOfCarsInTraffic('trafficCars')">✔</button>
+                <label>Traffic length :</label>
+                <input type="number" class="input-param" id="trafficLength" name="trafficLength" value=5 min="0" max="100">
+                <button class="check" onclick="setParameter('trafficLength')">✔</button>
+            </div>
+
+            <div class="verticalAlign">
+                <label>Number of lane :</label>
+                <input type="number" class="input-param" id="laneCount" name="laneCount" value="3" min="2" max="4">
+                <button class="check" onclick="setParameter('laneCount')">✔</button>
             </div>
             <div class="verticalAlign">
                 <button class="roundButton" onclick="trafficSave()">💾</button>
@@ -31,6 +43,21 @@
         <div id="card">
             <h2>Network</h2>
             <div class="verticalAlign">
+                <label>Speed :</label>
+                <input type="number" class="input-param" id="speed" name="speed" step="0.1" value="3" min="0" max="5">
+                <button class="check" onclick="setParameter('speed')">✔</button>
+            </div>
+            <div class="verticalAlign">
+                <label>Number of cars :</label>
+                <input type="number" class="input-param" id="network" name="network" value="500" min="1" max="1000">
+                <button class="check" onclick="setParameter('network')">✔</button>
+            </div>
+            <div class="verticalAlign">
+                <label>Mutation rate :</label>
+                <input type="number" class="input-param" id="mutationRate" name="mutationRate" step="0.1" value="0.1" min="0.1" max="1">
+                <button class="check" onclick="setParameter('mutationRate')">✔</button>
+            </div>
+            <div class="verticalAlign">
                 <button class="roundButton" onclick="save()">💾</button>
                 <button class="roundButton" onclick="discard()">🗑️</button>
             </div>
@@ -38,6 +65,7 @@
     </aside>
     <canvas id="carCanvas"></canvas>
     <canvas id="networkCanvas"></canvas>
+
     <script src="visualizer.js"></script>
     <script src="network.js"></script>
     <script src="sensor.js"></script>
