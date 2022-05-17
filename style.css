@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
+
+
+body{
+    margin: 0px;
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#carCanvas{
+    background-color: #23232D;
+}
+#networkCanvas{
+    background-color: black;
+}
+
+
+
+
+#aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    min-width: 300px;
+    background-color: #23232D;
+}
+
+
+/* Card */
+
+#card{
+    display: flex;
+    flex-direction: column;
+    
+    background-color: #191920;
+    width: 200px;
+    padding: 10px 25px;
+    margin: 20px 0px;
+    border-radius: 5px;
+    background: linear-gradient(315deg, #ffffff, #d7e1ec);
+}
+h2{
+    margin: 0px;
+    text-align: center;
+    font-size: 24px;
+    color: #191920;
+    font-family: 'Roboto Mono', monospace;
+    padding: 10px 0px 20px 0px;
+}
+label{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    color: #191920;
+    margin: 0px;
+    padding: 10px 0px;
+}
+#trafficCars{
+    width: 50px;
+    height: 25px;
+    margin: 0px 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+.check{
+    margin: 0px;
+    padding: 0px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+button{
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 2px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    transition: all 0.5s ease-out;
+}
+button:hover{
+    background-color: #191920;
+    color: #ffffff;
+}
+.roundButton{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    font-size: 15px;
+
+}
+
+
+
+.verticalAlign{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

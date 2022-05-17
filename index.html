@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicons/favicon32.png" />
+    <title>Self Driving Car</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside id="aside">
+        <div id="card">
+            <h2>Regenerate Script</h2>
+            <div class="verticalAlign">
+                <button onclick="load_js();">Refresh Page</button>
+                <button onclick="togglePause()">Play | Pause</button>
+            </div>
+        </div>
+        <div id="card">
+            <h2>Traffic</h2>
+            <div class="verticalAlign">
+                <label>Cars num : </label>
+                <input type="number" id="trafficCars" name="trafficCars" value="20" min="0" max="100">
+                <button class="check" onclick="setNumOfCarsInTraffic('trafficCars')">✔</button>
+            </div>
+            <div class="verticalAlign">
+                <button class="roundButton" onclick="trafficSave()">💾</button>
+                <button class="roundButton" onclick="trafficDiscard()">🗑️</button>
+            </div>
+        </div>
+        <div id="card">
+            <h2>Network</h2>
+            <div class="verticalAlign">
+                <button class="roundButton" onclick="save()">💾</button>
+                <button class="roundButton" onclick="discard()">🗑️</button>
+            </div>
+        </div>
+    </aside>
+    <canvas id="carCanvas"></canvas>
+    <canvas id="networkCanvas"></canvas>
+    <script src="visualizer.js"></script>
+    <script src="network.js"></script>
+    <script src="sensor.js"></script>
+    <script src="utils.js"></script>
+    <script src="road.js"></script>
+    <script src="controls.js"></script>
+    <script src="car.js"></script>
+    <script src="main.js" ></script>
+</body>
+</html>
