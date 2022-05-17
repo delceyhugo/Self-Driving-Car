@@ -105,7 +105,7 @@ class Car{
         this.y -= Math.cos(this.angle)*this.speed
     }
     draw(ctx, drawSensor = false){
-        if(this.damaged == true && this.img.src !== 'http://localhost:5500/assets/cars/carDamaged.png'){
+        if(this.damaged == true && this.img.src !== window.location.href + 'assets/cars/carDamaged.png'){
             this.img.src = 'assets/cars/carDamaged.png'
         }
         ctx.save()
